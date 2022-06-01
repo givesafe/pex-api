@@ -9,7 +9,7 @@ module PexApi
       #
       # THIS IS PROBABLY NOT NECESSARY AND SHOULD JUST BE MANAGED BY THE BACKEND TRANSACTION HISTORY.
       # IF CHARGES OCCUR ON THIS CARD THAT DONT OCCUR ON THE BACKEND THEN THIS SHOULD BE USED IN A BACKEND CRON JOB TO UPDATE TRANSACTION HISTORY
-      def self.call(token, card_account_id, *args)
+      def self.call(card_account_id, *args)
         _path = "Details/TransactionDetails/#{card_account_id}"
         
         _params = {
@@ -19,7 +19,7 @@ module PexApi
           IncludeDeclines: (args.fetch(:include_declines, false) ? 1 : 0)
         }
         
-        response = ::PexApi::Client::Token.new(token: token).get(_path, _params)
+        response = ::PexApi::Client::Token.new.get(_path, _params)
         
         JSON.parse(response.body)
       end

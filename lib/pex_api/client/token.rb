@@ -5,10 +5,10 @@ module PexApi
     class Token < Base
       attr_reader :token
       
-      def initialize(sandbox_mode: true, token: '')
+      def initialize(sandbox_mode: true, token: nil)
         @url = sandbox_mode ? SANDBOX_API_URL : API_URL
 
-        @token = token
+        @token = token || ::PexApi.configuration.token
       end
 
       private

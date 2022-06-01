@@ -5,8 +5,8 @@ module PexApi
     # Group a card
     #
     # Returns BOOL indicating the activation was successful or not
-    def self.call(token)
-      ::PexApi::Client::Token.new(token: token).post("Group")
+    def self.call
+      ::PexApi::Client::Token.new.post("Group")
     end
   end
 end

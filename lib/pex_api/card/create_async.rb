@@ -39,7 +39,7 @@ module PexApi
       #     contact_name: STR | ""
       #   }
       #
-      def self.call(token, cards=[])
+      def self.call(cards=[])
         formatted_cards = cards.map do |card|
           profile_address = card.fetch(:profile_address, {})
           shipping_address = card.fetch(:shipping_address, {})
@@ -79,7 +79,7 @@ module PexApi
         end
         _params = { "Cards": formatted_cards }
 
-        ::PexApi::Client::Token.new(token: token).post("Card/CreateAsync", _params)
+        ::PexApi::Client::Token.new.post("Card/CreateAsync", _params)
       end
     end
   end
