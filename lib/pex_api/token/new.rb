@@ -9,7 +9,7 @@ module PexApi
       def self.call
         response = ::PexApi::Client::Basic.new.post('Token', params)
         
-        return "" if response.code.to_s.first.to_i > 2
+        return "" if response.code.to_s[0].to_i > 2
         
         JSON.parse(response.body)['Token']
       end
@@ -18,8 +18,8 @@ module PexApi
 
       def self.params
         {
-          "Username": ENV['API_USERNAME'],
-          "Password": ENV['API_PASSWORD']
+          "Username": ::PexApi.configuration.username,
+          "Password": ::PexApi.configuration.password
         }
       end
 

@@ -2,7 +2,7 @@ require 'pex_api/client/token'
 
 module PexApi
   module Details
-    class TransactionHistory
+    class TransactionDetails
       # TransactionHistory for an account
       #
       # Returns JSON response

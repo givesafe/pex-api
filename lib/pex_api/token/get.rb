@@ -16,10 +16,13 @@ module PexApi
       def self.call
         response = ::PexApi::Client::Basic.new.get('Token')
         
-        return "" if response.code.to_s.first.to_i > 2
+        if response.code.to_s[0].to_i > 2
+          puts "PexApi Error: ::PexApi::Client::Basic.new.get('Token') returned #{response.code} with a response body: #{response.body}"
+          return ""
+        end
         
         _tokens = JSON.parse(response.body)['Tokens']
-        _groups = group_tokens _tokens
+        _groups = clean_expired_tokens _tokens
         
         # take one of the valid token
         _token = _groups[:valids].pop
@@ -35,7 +38,7 @@ module PexApi
       private
 
 
-      def group_tokens(_tokens)
+      def self.clean_expired_tokens(json_tokens)
         _tokens = { expired: [], valids: [] }
         if json_tokens.length > 0
           # iterate through the tokens
@@ -52,11 +55,11 @@ module PexApi
         _tokens
       end
 
-      def delete_list(_tokens)
+      def self.delete_list(_tokens)
         _tokens.each { |_t| delete(_t) } if _tokens.length > 0
       end
 
-      def delete(token)
+      def self.delete(token)
         ::PexApi::Token::Delete.call(token)
       end
     end

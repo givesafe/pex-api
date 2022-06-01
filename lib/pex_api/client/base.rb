@@ -1,6 +1,5 @@
-require 'rest-client'
 require 'json'
-require 'pex_api/client/response'
+require 'pex_api/https'
 
 module PexApi
   module Client
@@ -70,13 +69,7 @@ module PexApi
           args.push(_params) if [:post, :put, :delete].include?(_method)
           args.push(_headers)
 
-          RestClient.send(_method, *args)
-        rescue RestClient::Unauthorized => e
-          puts "ERROR: #{e.response}"
-          ::PexApi::Client::Response.new(400, 'Unauthorized')
-        rescue RestClient::ServiceUnavailable => e
-          puts "ERROR: #{e.response}"
-          ::PexApi::Client::Response.new(400, 'ServiceUnavailable')
+          PexApi::Https.call(_method, *args)
         end
       end
     end

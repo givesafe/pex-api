@@ -1,10 +1,8 @@
 require 'pex_api/client/base'
-require 'base64'
 
 module PexApi
   module Client
     class Basic < Base
-      BASE_TOKEN = Base64.encode64(ENV['APP_ID'] + ":" + ENV['APP_SECRET'])[0...-1].freeze
       
       def initialize(sandbox_mode: true)
         @url = sandbox_mode ? SANDBOX_API_URL : API_URL
@@ -13,7 +11,11 @@ module PexApi
       private
 
       def inherited_headers
-        { Authorization: "basic " + self.class::BASE_TOKEN }
+        auth_value = ::PexApi.configuration.app_base64_auth
+        if auth_value.nil?
+          auth_value = ""
+        end
+        { Authorization: "basic #{auth_value}" }
       end
     end
   end

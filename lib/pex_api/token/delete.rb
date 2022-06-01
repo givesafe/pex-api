@@ -9,7 +9,7 @@ module PexApi
       def self.call(token)
         response = ::PexApi::Client::Token.new(token: token).delete('Token')
         
-        response.code.to_s.first.to_i <= 2
+        response.code.to_s[0].to_i <= 2
       end
     end
   end

@@ -1,6 +1,6 @@
 module PexApi
-  module Client
-    class Response
+  module Response
+    class Base
       attr_reader :code, :body
       def initialize(code=200, body='')
         @code = code
