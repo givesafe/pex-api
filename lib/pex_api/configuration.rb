@@ -1,6 +1,6 @@
 # lib/pex_api/configuration.rb
 require 'base64'
-require './token/get'
+require 'pex_api/token/get'
 
 module PexApi
   class Configuration
