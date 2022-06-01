@@ -11,7 +11,7 @@ module PexApi
 
         @token = token || ::PexApi.configuration.app_token
         if @token.nil?
-          ::PexApi.configuration.app_token = ::PexApi::Token::Get.call
+          ::PexApi.configuration.app_token = @token = ::PexApi::Token::Get.call
         end
       end
 
