@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "pex_api/version"
-require_relative "pex_api/configuration"
-
-Dir["pex_api/**/*.rb"].each {|file| require file }
+Dir[File.join(__dir__, 'lib', 'pex_api', '**', '*.rb')].each { |file| puts file[6..-4] }
 
 module PexApi
   class Error < StandardError; end
