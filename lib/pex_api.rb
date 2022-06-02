@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-Dir[File.join(__dir__, 'lib', 'pex_api', '**', '*.rb')].each { |file| require file[6..-4] }
+Dir[File.join(__dir__, 'lib', 'pex_api', '**', '*.rb')].each do |file|
+  puts "PexApi:: requiring #{file[6..-4]}"
+  require file[6..-4]
+end
 
 module PexApi
   class Error < StandardError; end
