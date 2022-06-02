@@ -7,7 +7,7 @@ module PexApi
       #
       # Returns http response
       def self.call
-        ::PexApi::Client::Token.new.post("Card/CardOrder")
+        ::PexApi::Client::Token.new.get("Card/CardOrder")
       end
     end
   end

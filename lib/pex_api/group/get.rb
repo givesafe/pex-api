@@ -10,7 +10,7 @@ module PexApi
         _path = "Group"
         _path = "#{_path}/#{group_id}" if group_id.present?
 
-        ::PexApi::Client::Token.new.post(_path)
+        ::PexApi::Client::Token.new.get(_path)
       end
     end
   end
