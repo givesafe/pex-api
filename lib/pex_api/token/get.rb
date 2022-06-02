@@ -30,7 +30,13 @@ module PexApi
         delete_list(_groups[:expired]) and delete_list(_groups[:valids])
 
         # get a new token if there were no valid tokens
-        _token = ::PexApi::Token::New.call unless _token
+        unless _token
+          response = ::PexApi::Token::New.call
+
+          _token = ""
+          _token = JSON.parse(response.body)['Token'] if response.code.to_s[0].to_i == 2
+        end
+        
 
         _token
       end

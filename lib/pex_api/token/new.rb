@@ -5,13 +5,9 @@ module PexApi
     class New
       # Create a new auth token
       #
-      # Returns STRING <Token | "">
+      # Returns http response
       def self.call
-        response = ::PexApi::Client::Basic.new.post('Token', params)
-        
-        return "" if response.code.to_s[0].to_i > 2
-        
-        JSON.parse(response.body)['Token']
+        ::PexApi::Client::Basic.new.post('Token', params)
       end
 
       private

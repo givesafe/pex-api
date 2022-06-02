@@ -5,13 +5,11 @@ module PexApi
     class Terminate
       # Terminate a card account
       #
-      # Returns BOOL indicating the termination was successful or not
+      # Returns http response
       def self.call(card_account_id='')
         _path = "Card/Terminate/#{card_account_id}"
         
-        response = ::PexApi::Client::Token.new.post(_path)
-        
-        response.code.to_s[0].to_i <= 2
+        ::PexApi::Client::Token.new.post(_path)
       end
     end
   end

@@ -18,6 +18,8 @@ require_relative "pex_api/webhook/auth_token"
 require_relative "pex_api/client/token"
 require_relative "pex_api/client/basic"
 
+require_relative "pex_api/group/get"
+
 module PexApi
   class Error < StandardError; end
   class InheritableOnlyClassTryingToInitializeError < StandardError; end

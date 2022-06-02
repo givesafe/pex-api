@@ -39,6 +39,7 @@ module PexApi
       #     contact_name: STR | ""
       #   }
       #
+      # Returns http response
       def self.call(cards=[])
         formatted_cards = cards.map do |card|
           profile_address = card.fetch(:profile_address, {})

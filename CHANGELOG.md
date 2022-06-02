@@ -30,3 +30,7 @@
 
 - PexApi::Token::Delete.call with no parameter will unset PexApi.configuration.app_token
 - PexApi::Details::AccountDetails.call card_account_id parameter is no optional. 
+
+## [0.2.6] - 2022-06-02
+
+- All classes return http responses directly except for PexApi::Token::Get, that still returns a token or empty string

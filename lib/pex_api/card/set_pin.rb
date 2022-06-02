@@ -5,13 +5,11 @@ module PexApi
     class SetPin
       # Create a 4-digit PIN and associate it with a card accountID.
       #
-      # Returns BOOL indicating the pin was successful set or not
+      # Returns http response
       def self.call(card_account_id='', pin="")
         _path = "Card/SetPin/#{card_account_id}"
         
-        response = ::PexApi::Client::Token.new.put(_path, { "Pin" => pin })
-        
-        response.code.to_s[0].to_i <= 2
+        ::PexApi::Client::Token.new.put(_path, { "Pin" => pin })
       end
     end
   end

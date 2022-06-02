@@ -5,7 +5,7 @@ module PexApi
     class TransactionDetails
       # TransactionHistory for an account
       #
-      # Returns JSON response
+      # Returns http response
       #
       # THIS IS PROBABLY NOT NECESSARY AND SHOULD JUST BE MANAGED BY THE BACKEND TRANSACTION HISTORY.
       # IF CHARGES OCCUR ON THIS CARD THAT DONT OCCUR ON THE BACKEND THEN THIS SHOULD BE USED IN A BACKEND CRON JOB TO UPDATE TRANSACTION HISTORY
@@ -19,9 +19,7 @@ module PexApi
           IncludeDeclines: (args.fetch(:include_declines, false) ? 1 : 0)
         }
         
-        response = ::PexApi::Client::Token.new.get(_path, _params)
-        
-        JSON.parse(response.body)
+        ::PexApi::Client::Token.new.get(_path, _params)
       end
     end
   end

@@ -5,14 +5,12 @@ module PexApi
     class AccountDetails
       # AccountDetails for an account
       #
-      # Returns JSON response
+      # Returns http response
       def self.call(card_account_id=nil)
         _path = "Details/AccountDetails"
         _path = "#{_path}/#{card_account_id}" if card_account_id.present?
         
-        response = ::PexApi::Client::Token.new.get(_path)
-        
-        JSON.parse(response.body)
+        ::PexApi::Client::Token.new.get(_path)
       end
     end
   end
