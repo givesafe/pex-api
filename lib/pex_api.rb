@@ -2,7 +2,7 @@
 
 Dir[File.join(__dir__, 'lib', 'pex_api', '**', '*.rb')].each do |file|
   puts "PexApi:: requiring #{file}"
-  require file
+  require_relative file[6..-1]
 end
 
 module PexApi
