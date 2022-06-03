@@ -14,6 +14,9 @@ module PexApi
       #
       # Returns STRING <Token | "">
       def self.call
+        config_token = PexApi.configuration.app_token
+        return config_token unless config_token.nil? || config_token.blank?
+
         response = ::PexApi::Client::Basic.new.get('Token')
         
         if response.code.to_s[0].to_i > 2

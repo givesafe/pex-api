@@ -27,6 +27,7 @@ require_relative "pex_api/response/token"
 require_relative "pex_api/response/address"
 
 require_relative "pex_api/group/get"
+require_relative "pex_api/group/new"
 
 require_relative "pex_api/details/account_details"
 require_relative "pex_api/details/transaction_details"
