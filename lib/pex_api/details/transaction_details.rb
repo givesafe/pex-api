@@ -13,7 +13,7 @@ module PexApi
         _path = "Details/TransactionDetails/#{card_account_id}"
         
         _params = {
-          StartDate: args.fetch(:start_date, DateTime.prev_month.to_s),
+          StartDate: args.fetch(:start_date, DateTime.now.prev_month.to_s),
           EndDate: args.fetch(:end_date, DateTime.now.to_s),
           IncludePendings: (args.fetch(:include_pendings, false) ? 1 : 0),
           IncludeDeclines: (args.fetch(:include_declines, false) ? 1 : 0)
