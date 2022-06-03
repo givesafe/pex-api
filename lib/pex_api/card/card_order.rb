@@ -6,8 +6,13 @@ module PexApi
       # Get general information about card orders
       #
       # Returns http response
-      def self.call
-        ::PexApi::Client::Token.new.get("Card/CardOrder")
+      def self.call(*args)
+        _params = {
+          StartDate: args.fetch(:start_date, DateTime.prev_month.to_s),
+          EndDate: args.fetch(:end_date, DateTime.now.to_s)
+        }
+
+        ::PexApi::Client::Token.new.get("Card/CardOrder", _params)
       end
     end
   end
