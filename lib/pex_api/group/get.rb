@@ -7,8 +7,10 @@ module PexApi
       #
       # Returns http response
       def self.call(group_id=nil)
+        group_id = nil if group_id.respond_to?(:empty?) and group_id.empty?
+        
         _path = "Group"
-        _path = "#{_path}/#{group_id}" unless group_id.nil? or group_id.empty?
+        _path = "#{_path}/#{group_id}" if !group_id.nil?
 
         ::PexApi::Client::Token.new.get(_path)
       end
