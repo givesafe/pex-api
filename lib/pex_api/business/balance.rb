@@ -6,7 +6,7 @@ module PexApi
       # Get the current balance of your PEX business account. 
       #
       # Returns http response
-      def self.call()
+      def self.call
         ::PexApi::Client::Token.new.get("Business/Balance")
       end
     end
