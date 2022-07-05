@@ -22,7 +22,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Setup
+
+Add the following environment variables. The specific values can be found at https://developer.pexcard.com.
+
+```
+  PEX_API_AUTH_BASE64=
+  PEX_API_USERNAME=
+  PEX_API_PASSWORD=
+  PEX_API_AUTH_BASE64=
+```
+
+If you do not use `PEX_API_AUTH_BASE64`, then you do have to use `PEX_API_APP_ID` and `PEX_API_APP_SECRET`.
+
+### Sandbox/Live Mode
+
+Pex provides a sandbox mode. PexApi gem **defaults to sandbox mode**.
+
+Add `PEX_API_MODE=live` environment variable if you want to use Pex's live server.
+
+
 
 ## Development
 
@@ -32,7 +51,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pex_api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/pex_api/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/givesafe/pex_api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/givesafe/pex_api/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -40,4 +59,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the PexApi project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/pex_api/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the PexApi project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/givesafe/pex_api/blob/master/CODE_OF_CONDUCT.md).
