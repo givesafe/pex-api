@@ -10,7 +10,7 @@ module PexApi
 
         _path = "Group"
 
-        ::PexApi::Client::Token.new.post(_path, {}, { Name: group_name })
+        ::PexApi::Client::Token.new.post(_path, { Name: group_name })
       end
     end
   end
