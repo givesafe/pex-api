@@ -34,3 +34,36 @@
 ## [0.2.6] - 2022-06-02
 
 - All classes return http responses directly except for PexApi::Token::Get, that still returns a token or empty string
+
+## [0.2.7]  
+requiring all pex files in glob
+Adding debug comments to
+requiring full paths from 0.2.7.3
+Using require_relative
+individually requiring each file and adding a commented ex of how to get the individual files
+
+## [0.2.8]
+Fixing Card::CardOrder and Group::Get to use GET instead of POST.
+
+## [0.2.9]
+PexApi::Card::CardOrder error with start_date and end_date fixed
+
+## [0.2.10] 
+Card::CardOrder and Datails::TransactionDetails date params bug fixed
+
+## [0.2.11] 
+Adding Group::New, updating Token::Get to return PexApi.configuration.app_token if present
+
+## [v0.2.12] 
+Adding Business::Balance
+
+## [0.2.12.1]
+fixing bug where i was calling rails method accidentally.
+
+## [0.2.13]
+fixing webhook/auth_token to use the decoded secret for comparison
+
+## [0.2.14]
+fixing Card::CardOrder and Group::Get fallback functionality for when id is an empty string
+
+## [0.2.15]
