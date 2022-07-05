@@ -15,7 +15,7 @@ module PexApi
       private
 
       def decoded_token
-        base64_decoded = Base64.base64_decode(token)
+        base64_decoded = Base64.decode64(token)
         _id, secret = base64_decoded.split(':')
         return "badtoken" if secret.nil? or secret.empty?
 
