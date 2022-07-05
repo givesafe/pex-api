@@ -2,7 +2,7 @@ require 'pex_api/client/token'
 
 module PexApi
   module Card
-    class SetPin
+    class ZeroBalance
       # Fund a specified card accountID to zero ($0).
       #
       # Specify a card accountID and funds from the business account will be added/removed so that the card account (available) balance = $0.00.
