@@ -67,3 +67,10 @@ fixing webhook/auth_token to use the decoded secret for comparison
 fixing Card::CardOrder and Group::Get fallback functionality for when id is an empty string
 
 ## [0.2.15]
+- Fixing NoMethodError in webhook/auth_token usage of Base64. We were calling `Base64.base64_decode` which is the wrong api for `Base64`. It is supposed to be `Base64.decode64`
+- Adding Documentation to Client/Token
+- Setting Sandbox/Live mode based on ENV[PEX_API_MODE]
+- Fixing Group/New. it was calling PexApi::Client::Token.new.post with wrong argument structure
+- Fixing Card/ZeroBalance. The class was not named ZeroBalance...
+- Updating README.md
+- Updating CHANGELOG.md
