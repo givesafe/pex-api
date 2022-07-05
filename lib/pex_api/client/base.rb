@@ -13,12 +13,14 @@ module PexApi
         :'Content-Type' => 'application/json'
       }.freeze
 
-      attr_reader :url
-      
       def initialize(sandbox_mode: true)
-        @url = sandbox_mode ? SANDBOX_API_URL : API_URL
-        
-        raise InheritableOnlyClassTryingToInitializeError, "cannot initialize class: #{self.class}. Use Basic or Token"
+        if self.class == ::PexApi::Client::Base
+          raise InheritableOnlyClassTryingToInitializeError, "cannot initialize class: PexApi::Client::Base. Use PexApi::Client::Basic or PexApi::Client::Token"
+        end
+      end
+
+      def url
+        @url ||= ENV.fetch('PEX_API_MODE', 'sandbox').downcase == 'live' ? API_URL : SANDBOX_API_URL
       end
 
       define_method(:get) do |path, headers={}|

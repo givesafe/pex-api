@@ -3,10 +3,6 @@ require 'pex_api/client/base'
 module PexApi
   module Client
     class Basic < Base
-      
-      def initialize(sandbox_mode: true)
-        @url = sandbox_mode ? SANDBOX_API_URL : API_URL
-      end
 
       private
 
