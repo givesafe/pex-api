@@ -24,8 +24,6 @@ module PexApi
       end
 
       define_method(:get) do |path, headers={}|
-        _path = build_path path
-        _headers = build_headers headers
         call(_method: :get, path: path, headers: headers)
       end
       
@@ -70,7 +68,7 @@ module PexApi
           args = [_path]
           args.push(_params) if [:post, :put, :delete].include?(_method)
           args.push(_headers)
-
+          
           PexApi::Https.call(_method, *args)
         end
       end

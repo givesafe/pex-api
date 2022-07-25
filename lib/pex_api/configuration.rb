@@ -15,7 +15,8 @@ module PexApi
       
       @app_base64_auth = ENV['PEX_API_AUTH_BASE64'] || nil
       if @app_base64_auth.nil? && !@app_id.nil? && !@app_secret.nil?
-        @app_base64_auth = Base64.encode64(@app_id + ':' + @app_secret)[0..-1]
+        base64 = Base64.encode64(@app_id + ':' + @app_secret) # => "someencodeddata\n"
+        @app_base64_auth = base64[0..-2] # remove the \n from the end of the encoded string
       end
     end
   end

@@ -14,8 +14,9 @@ module PexApi
       def initialize(token: nil)
         @token = token || ::PexApi.configuration.app_token
         if @token.nil?
-          ::PexApi.configuration.app_token = @token = ::PexApi::Token::Get.call
+          @token = ::PexApi::Token::Get.call
         end
+        ::PexApi.configuration.app_token = @token
       end
 
       private
