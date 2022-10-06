@@ -74,3 +74,11 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 - Fixing Card/ZeroBalance. The class was not named ZeroBalance...
 - Updating README.md
 - Updating CHANGELOG.md
+
+## [0.2.16]
+- updating client token to remove \n from base64 encoding and refactor for client base and configuration
+
+## [0.2.17]
+- Fixing PexApi::Card::Activate, was using wrong pex api url
+- Updating CHANGELOG.md for v0.2.16 & v0.2.17
+
