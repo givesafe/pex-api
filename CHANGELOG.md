@@ -82,3 +82,7 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 - Fixing PexApi::Card::Activate, was using wrong pex api url
 - Updating CHANGELOG.md for v0.2.16 & v0.2.17
 
+## [0.2.18]
+- Fixing PexApi::Card::ZeroBalance, don't default to all accounts
+- Removing params from delete http requests
+

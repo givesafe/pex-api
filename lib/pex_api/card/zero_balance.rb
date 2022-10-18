@@ -8,7 +8,8 @@ module PexApi
       # Specify a card accountID and funds from the business account will be added/removed so that the card account (available) balance = $0.00.
       #
       # Returns http response
-      def self.call(card_account_id='')
+      def self.call(card_account_id='0')
+
         _path = "Card/Zero/#{card_account_id}"
         
         ::PexApi::Client::Token.new.post(_path) 

@@ -28,7 +28,7 @@ module PexApi
         _groups = clean_expired_tokens _tokens
         
         # take one of the valid token
-        _token = _groups[:valids].pop
+        _token = _groups[:valids].first
         # delete the expired/soon to expire tokens and the rest of the valids
         delete_list(_groups[:expired]) and delete_list(_groups[:valids])
 
