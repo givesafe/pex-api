@@ -84,5 +84,7 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.2.18]
 - Fixing PexApi::Card::ZeroBalance, don't default to all accounts
+
+## [0.2.19]
 - Removing params from delete http requests
 
