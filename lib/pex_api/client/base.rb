@@ -66,7 +66,7 @@ module PexApi
           puts "params: #{_params}"
           puts "headers: #{_headers}"
           args = [_path]
-          args.push(_params) if [:post, :put, :delete].include?(_method)
+          args.push(_params) if [:post, :put].include?(_method)
           args.push(_headers)
           
           PexApi::Https.call(_method, *args)
