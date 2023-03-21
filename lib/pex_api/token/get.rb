@@ -14,62 +14,83 @@ module PexApi
       #
       # Returns STRING <Token | "">
       def self.call
-        config_token = PexApi.configuration.app_token
-        return config_token unless config_token.nil? || config_token.blank?
-
         response = ::PexApi::Client::Basic.new.get('Token')
         
-        if response.code.to_s[0].to_i > 2
+        token = ''
+
+        # try to get an existing valid token
+        if response.code.to_s[0].to_i == 2
+          tokens = JSON.parse(response.body)['Tokens']
+          token = get_oldest_expiry_token(tokens)
+        else
           puts "PexApi Error: ::PexApi::Client::Basic.new.get('Token') returned #{response.code} with a response body: #{response.body}"
-          return ""
         end
         
-        _tokens = JSON.parse(response.body)['Tokens']
-        _groups = clean_expired_tokens _tokens
-        
-        # take one of the valid token
-        _token = _groups[:valids].first
-        # delete the expired/soon to expire tokens and the rest of the valids
-        delete_list(_groups[:expired]) and delete_list(_groups[:valids])
-
-        # get a new token if there were no valid tokens
-        unless _token
+        # if we don't have a valid token then we create a new one
+        unless token.present?
           response = ::PexApi::Token::New.call
 
-          _token = ""
-          _token = JSON.parse(response.body)['Token'] if response.code.to_s[0].to_i == 2
+          if response.code.to_s[0].to_i == 2
+            token = JSON.parse(response.body)['Token']
+          else
+            puts "PexApi Error: ::PexApi::Token::New.call returned #{response.code} with a response body: #{response.body}"
+          end
         end
         
-
         _token
       end
 
       private
 
 
-      def self.clean_expired_tokens(json_tokens)
-        _tokens = { expired: [], valids: [] }
+      # Look through the list of tokens and delete the expired and will expire in the next month tokens.
+      # Then sort the tokens by expiration date and get the token that will expire latest, delete the rest of the tokens
+      # If all tokens were expired or no tokens were returned, then create a new token.
+      #       
+      # Returns: STRING <Token | "">
+      def self.get_oldest_expiry_token(json_tokens)
+        # json_tokens response ex: [{"Username"=>"user1", "AppId"=>"app1", "Token"=>"token_hash", "TokenExpiration"=>"2023-09-20T16:47:39.68"}] 
+        _tokens = []
         if json_tokens.length > 0
           # iterate through the tokens
           json_tokens.each do |token|
             # check if date_string formatted like `2022-11-24T17:12:41.507` will expire in the next month
-            date, time = token['TokenExpiration'].split('T')
-            expiry_array = ((date.split('-').map(&:to_i)) + (time.split(':').map(&:to_f)))
-            is_expired = DateTime.new(*expiry_array) < DateTime.now.next_month
-            # group them by expired or valid
-            key = is_expired ? :expired : :valids
-            _tokens[key] << token['Token']
+            is_expired = DateTime.parse(token['TokenExpiration']) < DateTime.now.next_month
+            # group them by (expired/will expire soon) or valid
+            if is_expired
+              delete(token)
+            else
+              _tokens << token
+            end
           end
         end
-        _tokens
+        valids = sort_list(_tokens)
+        # pop the oldest expiring token out of the list
+        valid = valids.pop
+        # delete the rest of the tokens
+        delete_list(valids)
+        # return empty string if valid is nil
+        valid || ''
       end
 
       def self.delete_list(_tokens)
-        _tokens.each { |_t| delete(_t) } if _tokens.length > 0
+        return _tokens if _tokens.length == 0
+        
+        _tokens.each { |_t| delete(_t) } 
+      end
+
+      def self.sort_list(_tokens)
+        return _tokens if _tokens.length == 0
+
+        _tokens.sort_by! { |t| DateTime.parse(t['TokenExpiration']) }
       end
 
       def self.delete(token)
-        ::PexApi::Token::Delete.call(token)
+        response = ::PexApi::Token::Delete.call(token)
+        
+        puts "PexApi Error: ::PexApi::Token::Delete.call returned #{response.code} with a response body: #{response.body}"
+        
+        response
       end
     end
   end

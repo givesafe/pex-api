@@ -88,3 +88,7 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 ## [0.2.19]
 - Removing params from delete http requests
 
+## [0.2.20]
+- Fixing PexApi::Token::Get, we are getting errors like `error: Api::V3::PexFundController pex fund did not complete for member_id: 1967. withdrawal receipt destroyed and error returned: Token expired or does not exist`
+- Ensuring that the cached app_token saved the expiration and will reset if it's expiring.
+
