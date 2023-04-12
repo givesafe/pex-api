@@ -6,6 +6,7 @@ module PexApi
     def self.call(_method, *args)
       RestClient.send(_method, *args)
     rescue RestClient::ExceptionWithResponse => e
+      puts "ERROR: #{e}"
       e.response
     rescue RestClient::Unauthorized => e
       puts "ERROR: #{e.response}"

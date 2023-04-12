@@ -92,3 +92,8 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 - Fixing PexApi::Token::Get, we are getting errors like `error: Api::V3::PexFundController pex fund did not complete for member_id: 1967. withdrawal receipt destroyed and error returned: Token expired or does not exist`
 - Ensuring that the cached app_token saved the expiration and will reset if it's expiring.
 
+## [0.2.21]
+- Adding more documentation and notes to classes. 
+- Pex fund can send 0 amount
+- Pex http responses are logged to console
+- Logging can be disabled by setting PEX_LOGGING_ENABLED to false, defaults to true

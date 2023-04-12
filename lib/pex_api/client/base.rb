@@ -69,7 +69,9 @@ module PexApi
           args.push(_params) if [:post, :put].include?(_method)
           args.push(_headers)
           
-          PexApi::Https.call(_method, *args)
+          response = PexApi::Https.call(_method, *args)
+          puts "response: #{response.inspect}"
+          response
         end
       end
     end
