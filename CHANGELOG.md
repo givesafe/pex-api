@@ -96,4 +96,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 - Adding more documentation and notes to classes. 
 - Pex fund can send 0 amount
 - Pex http responses are logged to console
+
+## [0.2.22]
 - Logging can be disabled by setting PEX_API_LOGGER_ENABLED to 'false', defaults to true
