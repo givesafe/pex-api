@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'pex_api/logger'
 
 module PexApi
   class Https

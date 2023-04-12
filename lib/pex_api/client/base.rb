@@ -61,16 +61,20 @@ module PexApi
         _headers = build_headers headers
         
         begin
-          ::PexApi::Logger.log "method: #{_method}"
-          ::PexApi::Logger.log "path: #{_path}"
-          ::PexApi::Logger.log "params: #{_params}"
-          ::PexApi::Logger.log "headers: #{_headers}"
+          ::PexApi::Logger.log "PEX_API method: #{_method}"
+          ::PexApi::Logger.log "PEX_API path: #{_path}"
+          ::PexApi::Logger.log "PEX_API params: #{_params}"
+          ::PexApi::Logger.log "PEX_API headers: #{_headers}"
           args = [_path]
           args.push(_params) if [:post, :put].include?(_method)
           args.push(_headers)
           
           response = PexApi::Https.call(_method, *args)
-          ::PexApi::Logger.log "response: #{response.inspect}"
+          if response.is_a?(RestClient::Response)
+            ::PexApi::Logger.log "PEX_API response:: status: #{response.code} body: #{response.body}"
+          else
+            ::PexApi::Logger.log "PEX_API response: #{response}"
+          end
           response
         end
       end

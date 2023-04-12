@@ -27,17 +27,18 @@ module PexApi
         end
         
         # if we don't have a valid token then we create a new one
-        unless token.present?
+        if token.nil? or token.empty?
           response = ::PexApi::Token::New.call
 
           if response.code.to_s[0].to_i == 2
             token = JSON.parse(response.body)['Token']
           else
+            token = ''
             ::PexApi::Logger.log "PexApi Error: ::PexApi::Token::New.call returned #{response.code} with a response body: #{response.body}"
           end
         end
         
-        _token
+        token
       end
 
       private
