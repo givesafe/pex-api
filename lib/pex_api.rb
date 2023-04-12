@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Dir[File.join(__dir__, 'lib', 'pex_api', '**', '*.rb')].each do |file|
-#   puts "require_relative \"#{file[6..-4]}\""
+#   ::PexApi::Logger.log "require_relative \"#{file[6..-4]}\""
 # end
 
 require_relative "pex_api/token/get"

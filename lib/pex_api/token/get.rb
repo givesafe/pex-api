@@ -23,7 +23,7 @@ module PexApi
           tokens = JSON.parse(response.body)['Tokens']
           token = get_oldest_expiry_token(tokens)
         else
-          puts "PexApi Error: ::PexApi::Client::Basic.new.get('Token') returned #{response.code} with a response body: #{response.body}"
+          ::PexApi::Logger.log "PexApi Error: ::PexApi::Client::Basic.new.get('Token') returned #{response.code} with a response body: #{response.body}"
         end
         
         # if we don't have a valid token then we create a new one
@@ -33,7 +33,7 @@ module PexApi
           if response.code.to_s[0].to_i == 2
             token = JSON.parse(response.body)['Token']
           else
-            puts "PexApi Error: ::PexApi::Token::New.call returned #{response.code} with a response body: #{response.body}"
+            ::PexApi::Logger.log "PexApi Error: ::PexApi::Token::New.call returned #{response.code} with a response body: #{response.body}"
           end
         end
         
@@ -88,7 +88,7 @@ module PexApi
       def self.delete(token)
         response = ::PexApi::Token::Delete.call(token)
         
-        puts "PexApi Error: ::PexApi::Token::Delete.call returned #{response.code} with a response body: #{response.body}"
+        ::PexApi::Logger.log "PexApi Error: ::PexApi::Token::Delete.call returned #{response.code} with a response body: #{response.body}"
         
         response
       end

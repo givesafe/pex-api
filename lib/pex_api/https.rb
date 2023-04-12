@@ -6,13 +6,13 @@ module PexApi
     def self.call(_method, *args)
       RestClient.send(_method, *args)
     rescue RestClient::ExceptionWithResponse => e
-      puts "ERROR: #{e}"
+      ::PexApi::Logger.log "ERROR: #{e}"
       e.response
     rescue RestClient::Unauthorized => e
-      puts "ERROR: #{e.response}"
+      ::PexApi::Logger.log "ERROR: #{e.response}"
       respond_with(400, e.response.body)
     rescue RestClient::ServiceUnavailable => e
-      puts "ERROR: #{e.response}"
+      ::PexApi::Logger.log "ERROR: #{e.response}"
       respond_with(400, e.response.body)
     end
 
