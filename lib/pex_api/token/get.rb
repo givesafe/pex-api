@@ -51,7 +51,8 @@ module PexApi
       # Returns: STRING <Token | "">
       def self.get_oldest_expiry_token(json_tokens)
         # json_tokens response ex: [{"Username"=>"user1", "AppId"=>"app1", "Token"=>"token_hash", "TokenExpiration"=>"2023-09-20T16:47:39.68"}] 
-        _tokens = []
+        _valids = []
+        _deletables = []
         if json_tokens.length > 0
           # iterate through the tokens
           json_tokens.each do |token|
@@ -59,22 +60,24 @@ module PexApi
             is_expired = DateTime.parse(token['TokenExpiration']) < DateTime.now.next_month
             # group them by (expired/will expire soon) or valid
             if is_expired
-              delete(token)
+              _deletables << token
             else
-              _tokens << token
+              _valids << token
             end
           end
         end
-        valids = sort_list(_tokens)
+        valids = sort_list(_valids)
         # pop the oldest expiring token out of the list
         valid = valids.pop
         # delete the rest of the tokens
-        delete_list(valids)
+        _deletables = _deletables + valids
         # return empty string if valid is nil
-        valid || ''
+        delete_list(_deletables, valid)
+        
+        ::PexApi.configuration.app_token = valid
       end
 
-      def self.delete_list(_tokens)
+      def self.delete_list(_tokens, valid_token)
         return _tokens if _tokens.length == 0
         
         _tokens.each { |_t| delete(_t) } 

@@ -99,3 +99,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.2.22]
 - Logging can be disabled by setting PEX_API_LOGGER_ENABLED to 'false', defaults to true
+
+## [0.2.24]
+- Fixing bug in Token::Get and Client::Token, there was a loop caused when deleting expired tokens. 

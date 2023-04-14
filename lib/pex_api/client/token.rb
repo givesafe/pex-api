@@ -9,20 +9,20 @@ module PexApi
     # If none in the initializer, then we look in the cached configuration variable.
     # If none in the cached configuration variable or the cached variable will expire soon, get a token and cache it.
     class Token < Base
-      attr_reader :token
+      attr_reader :token_object
       
       def initialize(token: nil)
-        @token = token || ::PexApi.configuration.app_token
-        if @token.nil? or (@token.has_key?('TokenExpiration') && DateTime.parse(@token['TokenExpiration']) < DateTime.now.next_month)
-          @token = ::PexApi::Token::Get.call
+        @token_object = token || ::PexApi.configuration.app_token
+        if token.nil?
+          @token_object = ::PexApi::Token::Get.call
+          ::PexApi.configuration.app_token = @token_object
         end
-        ::PexApi.configuration.app_token = @token
       end
 
       private
 
       def inherited_headers
-        { Authorization: "token #{token['Token']}" }
+        { Authorization: "token #{token_object['Token']}" }
       end
     end
   end
