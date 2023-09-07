@@ -102,3 +102,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.2.24]
 - Fixing bug in Token::Get and Client::Token, there was a loop caused when deleting expired tokens. 
+
+## [0.3.0]
+- Update Transaction Details to work correctly. 
