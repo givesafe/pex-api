@@ -14,7 +14,11 @@ module PexApi
       def initialize(token: nil)
         @token_object = token || ::PexApi.configuration.app_token
         if token.nil?
-          @token_object = ::PexApi::Token::Get.call
+          response = ::PexApi::Token::New.call
+
+          if response.code.to_s[0].to_i == 2
+            @token_object = JSON.parse(response.body)
+          end
           ::PexApi.configuration.app_token = @token_object
         end
       end

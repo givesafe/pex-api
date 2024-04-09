@@ -105,3 +105,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.3.0]
 - Update Transaction Details to work correctly. 
+
+## [0.3.1]
+- Fixing Authorization after PEX Update 2024.4.5.1 
