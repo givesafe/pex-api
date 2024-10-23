@@ -111,3 +111,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.3.2]
 - Fixing bug in PexApi::Client::Token. It was creating a new token and using the new token even when config.app_token was set. Now it will use config.app_token when present and not create a new token or update config.app_token.
+
+## [0.3.3]
+- Updating rexml dependency for security purposes

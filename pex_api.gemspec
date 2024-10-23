@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "rest-client", "~> 2.1.0"
+  spec.add_dependency "rexml", ">= 3.3.3", "< 4.0"
   
   spec.add_development_dependency 'dotenv', '~> 2.5'
 
