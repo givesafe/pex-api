@@ -118,3 +118,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 ## [0.4.0]
 - Updating ruby dependency to 3.2+
 - Updating rexml dependency for security purposes
+
+## [0.4.1]
+- Removing rexml dependency... was only set to attempt to force incorrectly.
