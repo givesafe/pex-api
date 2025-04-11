@@ -121,3 +121,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.4.1]
 - Removing rexml dependency... was only set to attempt to force incorrectly.
+
+## [0.4.2]
+- fixing Gemfile and moving gems into the gemspec's development dependencies
