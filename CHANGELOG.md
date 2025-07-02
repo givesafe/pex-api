@@ -124,3 +124,7 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 
 ## [0.4.2]
 - fixing Gemfile and moving gems into the gemspec's development dependencies
+
+## [0.4.3]
+- Updating ruby version to 3.3.8
+- Updating rexml dependency for security purposes

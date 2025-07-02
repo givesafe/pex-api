@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = "The official SDK for the PEX API, containing interface implementations and error handling for working with it."
   spec.homepage      = "https://developer.pexcard.com"
   spec.license       = "MIT"
-  spec.required_ruby_version = ">= 3.2.4"
+  spec.required_ruby_version = ">= 3.3.8"
 
   spec.metadata["allowed_push_host"] = ""
 
