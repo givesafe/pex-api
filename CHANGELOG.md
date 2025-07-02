@@ -128,3 +128,6 @@ fixing Card::CardOrder and Group::Get fallback functionality for when id is an e
 ## [0.4.3]
 - Updating ruby version to 3.3.8
 - Updating rexml dependency for security purposes
+
+## [0.4.4]
+- Removing unused .github/workflow.main.yml
